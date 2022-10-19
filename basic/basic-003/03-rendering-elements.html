@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendering Elements</title>
+    <!-- The React Library -->
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- The Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>Rendering Elements</h2>
+    <div id="root">
+      <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <ul style="background: #ddd; padding: 1rem">
+      <li>
+        <a href="https://reactjs.org/docs/rendering-elements.html"
+          >Rendering Elements
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
+<script type="text/babel">
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  function tick() {
+    const jsx = (
+      <div>
+        <h2>Current Time: {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    );
+
+    root.render(jsx);
+  }
+
+  setInterval(tick, 1000); // render every second
+</script>

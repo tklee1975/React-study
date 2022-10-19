@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendering Elements</title>
+    <!-- The React Library -->
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- The Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>Components and Props</h2>
+    <div id="root">
+      <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <ul style="background: #ddd; padding: 1rem">
+      <li>
+        <a href="https://reactjs.org/docs/components-and-props.html"
+          >Components and Props
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
+<script type="text/babel">
+  class Welcome extends React.Component {
+    render() {
+      return <h1>Hello, {this.props.name}</h1>;
+    }
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  const jsx = (
+    <div>
+      <Welcome name="Student" />
+      <Welcome name="Teacher" />
+    </div>
+  );
+
+  root.render(jsx);
+</script>

@@ -1,0 +1,16 @@
+
+.card {
+    background: #ffe;
+    font-size: 0.8rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.header {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

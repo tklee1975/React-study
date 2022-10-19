@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handling Events</title>
+    <!-- The React Library -->
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- The Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>Handling Events</h2>
+    <div id="root">
+      <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <ul style="background: #ddd; padding: 1rem">
+      <li>
+        <a href="https://reactjs.org/docs/handling-events.html"
+          >Handling Events
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
+<script type="text/babel">
+  class Toggle extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { isToggleOn: true };
+
+      // This binding is necessary to make `this` work in the callback
+      // ken: the callsite of this.handleClick from window-> react component
+      this.handleClick = this.handleClick.bind(this);
+      // this.getStyle = this.getStyle.bind(this);
+    }
+
+    handleClick() {
+      this.setState((state) => ({
+        isToggleOn: !state.isToggleOn,
+      }));
+    }
+
+    getStyle() {
+      return {
+        padding: "0.5rem 2rem",
+        background: this.state.isToggleOn ? "#0f0" : "#f00",
+        color: this.state.isToggleOn ? "#000" : "#fff",
+      };
+    }
+
+    render() {
+      return (
+        <>
+          <button style={this.getStyle()} onClick={this.handleClick}>
+            {this.state.isToggleOn ? "ON" : "OFF"}
+          </button>
+        </>
+      );
+    }
+  }
+
+
+  class CounterButton extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { counter: 0 };
+    }
+
+    increase = () => {
+      this.setState((state) => ({
+        counter: state.counter + 1,
+      }));
+    }
+
+    decrease = () => {
+      this.setState((state) => ({
+        counter: state.counter - 1,
+      }));
+    }
+
+    canDecrease() {
+      return this.state.counter > 0;
+    }
+
+    render() {
+      return (
+        <div style={{display:'flex', alignItem: 'center'}}>
+          <button disabled={! this.canDecrease() } onClick={this.decrease}>-</button>
+          <div style={{padding: '0rem 1rem'}}>{this.state.counter}</div>
+          <button onClick={this.increase}>+</button>
+        </div>
+      );
+    }
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  root.render(
+    <div>
+      <Toggle />
+      <hr/>
+      <CounterButton />
+    </div>
+  );
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Hooks</title>
+    <!-- The React Library -->
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- The Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>Hook Basic</h2>
+    <div id="root">
+      <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <ul style="background: #ddd; padding: 1rem">
+      <li>
+        <a href="https://reactjs.org/docs/handling-events.html"
+          >Lists and Keys
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
+<script type="text/babel">
+  function NumberList(props) {
+    const numbers = props.numbers;
+    const listItems = numbers.map((number) => <li>{number}</li>);
+    return <ul>{listItems}</ul>;
+  }
+
+  const numbers = [1, 2, 3, 4, 5];
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  root.render(
+    <div>
+      <NumberList numbers={numbers} />)
+    </div>
+  );
+</script>

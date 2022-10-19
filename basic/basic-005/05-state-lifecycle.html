@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>State and Lifecycle</title>
+    <!-- The React Library -->
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- The Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>State and Lifecycle</h2>
+    <div id="root">
+      <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <ul style="background: #ddd; padding: 1rem">
+      <li>
+        <a href="https://reactjs.org/docs/state-and-lifecycle.html"
+          >State and Lifecycle
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
+<script type="text/babel">
+  class Clock extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { date: new Date() };
+    }
+
+    componentDidMount() {
+      this.timerID = setInterval(() => this.tick(), 1000);
+    }
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
+    tick() {
+      this.setState({
+        date: new Date(),
+      });
+    }
+
+    render() {
+      return (
+        <div style={{ textAlign: "center" }}>
+          <h1> {this.state.date.toLocaleDateString()}</h1>
+          <h2> {this.state.date.toLocaleTimeString()}</h2>
+          {/* JSON.stringify(this.state.date) */}
+        </div>
+      );
+    }
+  }
+
+  class Counter extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { count: 0 };
+    }
+
+    increaseCounter1() {
+      this.setState({
+        count: this.state.count + 1,
+      });
+    }
+    increaseCounter2() {
+      this.setState((state, props) => ({
+        count: state.count + this.props.step || 1,
+      }));
+    }
+
+    componentDidMount() {
+      this.timerID = setInterval(() => this.tick(), 1000);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
+    tick() {
+      this.increaseCounter2();
+    }
+
+    render() {
+      return <h3>Counter: {this.state.count}</h3>;
+    }
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  root.render(
+    <div>
+      <Clock />
+      <Counter step={5} />
+      <Counter step={2} />
+    </div>
+  );
+</script>
